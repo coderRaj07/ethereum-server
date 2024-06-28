@@ -13,7 +13,7 @@ const contract = new web3.eth.Contract(contractABI, contractAddress);
 
 // Set message on the blockchain
 exports.setMessage = async (req, res) => {
-    const { message } = req.body;
+    const { message, adminAddress } = req.body;
 
     // Check if request is from admin address
     // if (req.headers.authorization !== adminAddress) {
