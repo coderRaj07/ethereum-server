@@ -44,12 +44,8 @@ exports.setMessage = async (req, res) => {
 // Get message from the blockchain
 exports.getMessage = async (req, res) => {
     try {
-        const latestBlockNumber = await web3.eth.getBlockNumber();
-        const messageHex = await contract.methods.getMessage().call();
-
-        const decodedMessage = web3.utils.hexToUtf8(messageHex);
-        console.log(`Decoded message: ${decodedMessage}`);
-        console.log(`Message from block ${latestBlockNumber}: ${message}`);
+        const message = await contract.methods.getMessage().call();
+        res.status(200).send({message})
     } catch (error) {
         console.error('Error getting message:', error);
         res.status(500).json({ error: 'Failed to get message' });
