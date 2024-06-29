@@ -24,10 +24,17 @@ exports.setMessage = async (req, res) => {
         const nonce = await web3.eth.getTransactionCount(adminAddress, 'latest'); // get latest nonce
         const data = contract.methods.setMessage(message).encodeABI(); // encode ABI of the method
 
+        // Estimate gas for the transaction
+        const gasEstimate = await web3.eth.estimateGas({
+            from: adminAddress,
+            to: contractAddress,
+            data
+        });
+
         const signedTx = await web3.eth.accounts.signTransaction({
             to: contractAddress,
             data,
-            gas: 35000,
+            gas: gasEstimate,
             gasPrice: web3.utils.toWei('10', 'gwei'), // Example gas price in gwei
             nonce,
         }, adminPrivateKey);
