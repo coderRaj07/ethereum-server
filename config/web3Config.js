@@ -4,7 +4,7 @@ const dotenv = require('dotenv');
 dotenv.config();
 
 // Using web3js to connect to the network
-const web3 = new Web3(`https://polygon-mainnet.infura.io/v3/${process.env.INFURA_PROJECT_ID}`);
+const web3 = new Web3(`https://polygon-amoy.infura.io/v3/${process.env.INFURA_PROJECT_ID}`);
 
 const contractABI = [
 	{
