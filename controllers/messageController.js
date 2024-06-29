@@ -27,7 +27,7 @@ exports.setMessage = async (req, res) => {
         const signedTx = await web3.eth.accounts.signTransaction({
             to: contractAddress,
             data,
-            gas: 350000000,
+            gas: 35000,
             gasPrice: web3.utils.toWei('10', 'gwei'), // Example gas price in gwei
             nonce,
         }, adminPrivateKey);
